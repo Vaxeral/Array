@@ -85,6 +85,12 @@ static void T##_array_resize(T##_Array_Header *this, size_t ctElem) {\
 }
 #define define_array_shrink(T)\
 static void T##_array_shrink(T##_Array_Header *this) {\
+	if(this->ctElem == 0) {\
+		free(this->data);\
+		this->data = NULL;\
+		this->cpElem = 0;\
+		return;\
+	}\
 	size_t cpElem = this->ctElem;\
 	void *p = realloc(this->data, cpElem * sizeof *this->data);\
 	if(p == NULL) return;\

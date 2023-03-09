@@ -70,14 +70,14 @@ int main(int argc, char const *argv[])
 		4: Macaroni
 	*/
 
-	printf("capacity before shrink: %lu\n", a.cpElem);
-	array_shrink(&a, cstring);
-	printf("capacity after shrink: %lu\n", a.cpElem);
-
 	while(!array_empty(&a, cstring))
 		array_pop(&a, cstring);
 	assert(a.ctElem == 0);
 
+	printf("capacity before shrink: %lu\n", a.cpElem);
+	array_shrink(&a, cstring);
+	printf("capacity after shrink: %lu\n", a.cpElem);
+	
 	array_free(&a, cstring);
 
 
